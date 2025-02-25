@@ -3,4 +3,5 @@
     <string name="title_activity_agregar_amigos_screen">AgregarAmigosScreen</string>
     <string name="title_activity_registro_screen">RegistroScreen</string>
     <string name="title_activity_prueba_compose_theme">PruebaComposeTheme</string>
+    <string name="title_activity_notificaciones_screen">NotificacionesScreen</string>
 </resources>

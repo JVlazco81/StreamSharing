@@ -17,22 +17,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.pruebacompose.R
 import com.example.streamsharing.ui.theme.PruebaComposeTheme
 
-class RegistroActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            PruebaComposeTheme {
-                RegistroScreen()
-            }
-        }
-    }
-}
 
 @Composable
-fun RegistroScreen() {
+fun RegistroScreen(navController: NavHostController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -66,7 +58,7 @@ fun RegistroScreen() {
             Spacer(modifier = Modifier.height(24.dp))
 
             OutlinedButton(
-                onClick = { /* Acción de Google */ },
+                onClick = { navController.navigate("mainScreen") },
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.primary),
                 modifier = Modifier.fillMaxWidth()
@@ -85,7 +77,7 @@ fun RegistroScreen() {
             Spacer(modifier = Modifier.height(12.dp))
 
             OutlinedButton(
-                onClick = { /* Acción de registro */ },
+                onClick = { navController.navigate("registroFormulario")},
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.primary),
                 modifier = Modifier.fillMaxWidth()
@@ -103,7 +95,7 @@ fun RegistroScreen() {
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            TextButton(onClick = { /* Ir a inicio de sesión */ }) {
+            TextButton(onClick = { navController.navigate("loginFormulario") }) {
                 Text(text = "¿Ya tienes cuenta? Inicia sesión", color = MaterialTheme.colorScheme.primary)
             }
         }
@@ -114,7 +106,7 @@ fun RegistroScreen() {
 @Composable
 fun RegistroScreenPreview() {
     PruebaComposeTheme {
-        RegistroScreen()
+        RegistroScreen(navController = rememberNavController())
     }
 }
 

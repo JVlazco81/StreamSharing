@@ -13,6 +13,11 @@
         android:theme="@style/Theme.StreamSharing"
         tools:targetApi="31">
         <activity
+            android:name="com.example.streamsharing.NotificacionesScreen"
+            android:exported="false"
+            android:label="@string/title_activity_notificaciones_screen"
+            android:theme="@style/Theme.StreamSharing" />
+        <activity
             android:name="com.example.streamsharing.ui.theme.PruebaComposeTheme"
             android:exported="false"
             android:label="@string/title_activity_prueba_compose_theme"

@@ -20,23 +20,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.streamsharing.ui.theme.PruebaComposeTheme
 
-class AgregarAmigosActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            PruebaComposeTheme {
-                AgregarAmigosScreen()
-            }
-        }
-    }
-}
-
 @Composable
-fun AgregarAmigosScreen() {
+fun AgregarAmigosScreen(navController: NavHostController) {
     Scaffold(
-        topBar = { AgregarAmigosTopBar() }
+        topBar = { AgregarAmigosTopBar(navController) }
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -59,11 +50,11 @@ fun AgregarAmigosScreen() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AgregarAmigosTopBar() {
+fun AgregarAmigosTopBar(navController: NavHostController) {
     TopAppBar(
         title = { Text("Agregar amigos", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
         navigationIcon = {
-            IconButton(onClick = { /* Acción para volver atrás */ }) {
+            IconButton(onClick = { navController.popBackStack() }) {
                 Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Volver")
             }
         },
@@ -110,33 +101,41 @@ fun RecentFriendsList() {
 
 @Composable
 fun FriendItem() {
-    Row(
+    Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
+            .padding(8.dp)
     ) {
-        Image(
-            painter = painterResource(id = android.R.drawable.ic_menu_gallery),
-            contentDescription = "Avatar",
-            modifier = Modifier.size(48.dp)
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-        Text("[USERNAME]", fontWeight = FontWeight.Bold, fontSize = 16.sp)
-        Spacer(modifier = Modifier.weight(1f))
-        IconButton(onClick = { /* Enviar solicitud */ }) {
-            Icon(imageVector = Icons.Default.Send, contentDescription = "Enviar solicitud")
-        }
-        IconButton(onClick = { /* Eliminar usuario */ }) {
-            Icon(imageVector = Icons.Default.Close, contentDescription = "Eliminar usuario")
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.surfaceVariant,
+                    shape = RoundedCornerShape(8.dp)), // ✅ Agrega fondo,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = android.R.drawable.ic_menu_gallery),
+                contentDescription = "Avatar",
+                modifier = Modifier.size(48.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text("[USERNAME]", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            Spacer(modifier = Modifier.weight(1f))
+            IconButton(onClick = { /* Enviar solicitud */ }) {
+                Icon(imageVector = Icons.Default.Send, contentDescription = "Enviar solicitud")
+            }
+            IconButton(onClick = { /* Eliminar usuario */ }) {
+                Icon(imageVector = Icons.Default.Close, contentDescription = "Eliminar usuario")
+            }
         }
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable
 fun AgregarAmigosScreenPreview() {
     PruebaComposeTheme {
-        AgregarAmigosScreen()
+        AgregarAmigosScreen(navController = rememberNavController())
     }
 }

@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.pruebacompose"
+    namespace = "com.example.streamsharing"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.pruebacompose"
+        applicationId = "com.example.streamsharing"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

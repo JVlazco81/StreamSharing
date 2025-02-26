@@ -27,7 +27,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.streamsharing.ui.theme.PruebaComposeTheme
 import androidx.compose.foundation.clickable
-import com.example.pruebacompose.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
